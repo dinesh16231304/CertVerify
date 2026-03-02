@@ -1,36 +1,225 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 CertVerify – Blockchain-Based Certificate Verification System
 
-## Getting Started
+CertVerify is a secure and tamper-proof certificate issuing and verification platform that leverages **Blockchain technology** and **SHA-256 hashing** to prevent academic fraud and certificate forgery.
 
-First, run the development server:
+It ensures that issued certificates cannot be altered, duplicated, or manipulated.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🛠️ Tech Stack
+
+- 🐍 Python (FastAPI Backend)
+- ⛓️ Ethereum Blockchain (Web3.py)
+- 🔐 SHA-256 File Hashing
+- 🌐 REST APIs
+- 🗄️ JSON-based User Storage
+- 🧪 Debug & Testing Utilities
+
+---
+
+## 🚀 Key Features
+
+✅ Issue certificates with blockchain hash registration  
+✅ Verify certificates via file upload  
+✅ SHA-256 hash-based integrity validation  
+✅ Smart contract-based immutability  
+✅ Admin statistics & certificate explorer APIs  
+✅ Student ID-based verification  
+✅ Debug and validation scripts for testing  
+
+---
+
+## 🏗️ Project Structure
+
+```
+CertVerify/
+│
+├── backend/                      # FastAPI backend application
+├── frontend/                     # Frontend UI
+├── ml/                           # Machine learning components (if applicable)
+├── models/                       # Saved ML models
+├── uploads/                      # Uploaded certificate files
+│
+├── backend_test.py               # Backend API testing
+├── check_blockchain_direct.py    # Direct blockchain verification
+├── check_user_file_hash.py       # SHA-256 hash comparison
+├── debug_store.py                # Debug blockchain storage
+├── debug_verify.py               # Debug certificate verification
+├── issue_real_cert.py            # Issue sample certificate
+├── issue_user_file.py            # Issue uploaded certificate
+├── verify_issue.py               # Verify issue status
+├── verify_student_id.py          # Student ID verification
+│
+├── users.json                    # User database (JSON)
+├── real_cert.png                 # Sample certificate
+└── README.md                     # Documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Installation & Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1️⃣ Clone the Repository
 
-## Learn More
+```bash
+git clone https://github.com/yourusername/CertVerify.git
+cd CertVerify
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2️⃣ Create Virtual Environment (Recommended)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+python -m venv venv
+venv\Scripts\activate   # Windows
+```
 
-## Deploy on Vercel
+For Mac/Linux:
+```bash
+source venv/bin/activate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+If `requirements.txt` is not available:
+
+```bash
+pip install fastapi uvicorn web3 requests python-multipart
+```
+
+---
+
+### 4️⃣ Start Backend Server
+
+```bash
+uvicorn main:app --reload
+```
+
+Backend runs at:
+
+```
+http://localhost:8000
+```
+
+Swagger API Docs:
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+## ⛓️ Blockchain Setup
+
+Run a local Ethereum blockchain using:
+
+- Hardhat  
+or  
+- Ganache  
+
+Default RPC URL:
+
+```
+http://127.0.0.1:8545
+```
+
+Smart contract interactions are handled via Web3.py.
+
+---
+
+## 🔍 How Certificate Verification Works
+
+1. Certificate file is uploaded.
+2. System generates SHA-256 hash of the file.
+3. Hash is stored on the Ethereum blockchain.
+4. During verification:
+   - Uploaded file is re-hashed.
+   - Compared against stored blockchain hash.
+   - System returns: ✅ Valid or ❌ Fake.
+
+---
+
+## 🧪 Testing & Debug Scripts
+
+Run backend test:
+
+```bash
+python backend_test.py
+```
+
+Debug blockchain storage:
+
+```bash
+python debug_store.py
+```
+
+Verify certificate upload:
+
+```bash
+python debug_verify.py
+```
+
+Direct blockchain verification:
+
+```bash
+python check_blockchain_direct.py
+```
+
+---
+
+## 📊 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/issue | Issue certificate |
+| POST | /api/upload | Verify certificate |
+| GET | /api/explorer | View issued certificates |
+| GET | /api/admin/stats | View admin statistics |
+| POST | /auth/register | Register user |
+| POST | /auth/login | User login |
+
+---
+
+## 🔐 Security Features
+
+- SHA-256 cryptographic hashing
+- Blockchain immutability
+- Secure REST APIs
+- Student ID validation
+- Certificate integrity verification
+- Tamper detection mechanism
+
+---
+
+## 🎯 Use Cases
+
+- Universities & Colleges
+- Online Certification Platforms
+- Skill Training Institutes
+- Government Credential Systems
+- Digital Badge Verification Platforms
+
+---
+
+## ⭐ Future Enhancements
+
+- Deploy smart contract on Ethereum Testnet (Sepolia/Goerli)
+- IPFS integration for decentralized storage
+- QR Code-based certificate validation
+- Enhanced frontend dashboard
+- AI-based forged certificate detection
+
+---
+
+## 👩‍💻 Author
+
+**Sai Dinesh Somavarapu**  
+Blockchain & Backend Developer  
+2025
